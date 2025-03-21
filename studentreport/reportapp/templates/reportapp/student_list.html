@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Student Marks</title>
+</head>
+<body>
+    <h1>Student Marks List</h1>
+    <table border="1" width="50%" height="50%">
+        <tr>
+            <th>Name</th>
+            <th>Marks</th>
+            <th>Status</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.Name }}</td>
+            <td>{{ student.Marks }}</td>
+            <td>
+                {% if student.Marks >= passing_marks %}
+                    <span style="color: green;">Pass</span>
+                {% else %}
+                    <span style="color: red;">Fail</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

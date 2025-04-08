@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Patients</h2>
+
+<form method="get" class="mb-3">
+    <input type="text" name="q" class="form-control" placeholder="Search patients by name..." value="{{ request.GET.q }}">
+</form>
+
+<a href="{% url 'add_patient' %}" class="btn btn-success mb-3">Add Patient</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Diagnosis</th>
+            <th>Treatment</th>
+            <th>Date Admitted</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.gender }}</td>
+            <td>{{ patient.diagnosis }}</td>
+            <td>{{ patient.treatment }}</td>
+            <td>{{ patient.admitted_date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No patients found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
